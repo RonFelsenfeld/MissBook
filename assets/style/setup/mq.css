@@ -1,0 +1,34 @@
+@media (max-width: 720px) {
+  .app-header {
+    color: var(--clr2bg);
+  }
+
+  .book-details {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .book-filter {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-filter form {
+    flex-direction: column;
+  }
+
+  .book-filter .input-container {
+    min-width: 100%;
+  }
+
+  .book-filter .input-container input {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .book-details .extra-details {
+    flex-direction: column;
+  }
+}
