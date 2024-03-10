@@ -56,7 +56,7 @@ function getEmptyBook() {
     listPrice: {
       amount: 0,
       currencyCode: 'EUR',
-      isOnSale: false,
+      isOnSale: Math.random() > 0.5 ? true : false,
     },
   }
 }

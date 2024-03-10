@@ -16,4 +16,10 @@
   .app-header {
     color: var(--clr2bg);
   }
+
+  .book-details {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
 }

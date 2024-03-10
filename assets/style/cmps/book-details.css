@@ -1,0 +1,32 @@
+.book-details {
+  padding: 2em;
+  gap: 2em;
+  background-color: var(--clr1bg-light);
+}
+
+.book-details .book-title {
+  font-size: 5em;
+}
+
+.book-details img {
+  width: 40%;
+}
+
+.book-details .book-desc {
+  font-size: 3em;
+}
+
+.book-details .book-price {
+  font-size: 2.5em;
+  margin-block-end: 1em;
+}
+
+.book-details .sale {
+  width: fit-content;
+  padding: 0.2em;
+
+  font-size: 3em;
+  text-transform: uppercase;
+  color: white;
+  background-color: red;
+}

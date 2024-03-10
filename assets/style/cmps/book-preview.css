@@ -1,7 +1,7 @@
 .book-preview {
   min-height: 100%;
 
-  gap: 1.5em;
+  justify-content: space-between;
   padding: 1.5em;
 
   font-family: 'Edu VIC WA NT Beginner', cursive;
@@ -18,7 +18,7 @@
 }
 
 .book-preview img {
-  width: 40%;
+  width: 80%;
 }
 
 .book-preview .book-price {

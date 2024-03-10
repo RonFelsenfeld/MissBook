@@ -1,6 +1,6 @@
 import { BookPreview } from './BookPreview.jsx'
 
-export function BookList({ books, onRemoveBook }) {
+export function BookList({ books, onRemoveBook, onSelectBook }) {
   if (!books || !books.length) return <div>No cars to show</div>
 
   return (
@@ -10,6 +10,7 @@ export function BookList({ books, onRemoveBook }) {
           <BookPreview book={book} />
 
           <div className="book-actions">
+            <button onClick={() => onSelectBook(book)}>Details</button>
             <button onClick={() => onRemoveBook(book.id)}>Remove</button>
           </div>
         </li>

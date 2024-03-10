@@ -4,9 +4,11 @@ import { BookFilter } from '../cmps/BookFilter.jsx'
 import { BookList } from '../cmps/BookList.jsx'
 
 import { bookService } from './../services/book.service.js'
+import { BookDetails } from './BookDetails.jsx'
 
 export function BookIndex() {
   const [books, setBooks] = useState(null)
+  const [selectedBook, setSelectedBook] = useState(null)
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
@@ -29,14 +31,33 @@ export function BookIndex() {
       .catch(err => console.log('Has issues with removing book', err))
   }
 
+  function onSelectBook(book) {
+    setSelectedBook(book)
+  }
+
   function onSetFilter(fieldsToUpdate) {
     setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...fieldsToUpdate }))
   }
 
   return (
     <section className="books-container">
-      <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-      <BookList books={books} onRemoveBook={onRemoveBook} />
+      {!selectedBook && (
+        <React.Fragment>
+          <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+          <BookList
+            books={books}
+            onRemoveBook={onRemoveBook}
+            onSelectBook={onSelectBook}
+          />
+        </React.Fragment>
+      )}
+
+      {selectedBook && (
+        <BookDetails
+          book={selectedBook}
+          onGoBack={() => setSelectedBook(null)}
+        />
+      )}
     </section>
   )
 }
