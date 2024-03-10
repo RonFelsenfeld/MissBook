@@ -1,3 +1,5 @@
+import { LongTxt } from './LongTxt.jsx'
+
 export function BookPreview({ book }) {
   const { amount, currencyCode } = book.listPrice
 
@@ -12,6 +14,8 @@ export function BookPreview({ book }) {
           {currencyCode}
         </span>
       </p>
+
+      <LongTxt txt={book.description} />
     </article>
   )
 }

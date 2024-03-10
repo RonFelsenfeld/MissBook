@@ -1,0 +1,12 @@
+.long-txt {
+  max-width: 100%;
+}
+
+.long-txt p {
+  font-size: 2em;
+}
+
+.long-txt button {
+  background-color: transparent;
+  text-decoration: underline;
+}

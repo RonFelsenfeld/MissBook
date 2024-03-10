@@ -5,7 +5,7 @@ export function BookList({ books, onRemoveBook, onSelectBook }) {
     return <div className="nothing-to-show">No books to show</div>
 
   return (
-    <ul className="book-list flex clean-list">
+    <ul className="book-list clean-list">
       {books.map(book => (
         <li key={book.id} className="flex column align-center">
           <BookPreview book={book} />

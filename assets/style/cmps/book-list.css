@@ -1,20 +1,15 @@
 .book-list {
-  flex-wrap: wrap;
-  gap: 1em;
-}
-
-.book-list > * {
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2em;
 }
 
 .book-list li {
-  min-height: 100%;
-
   justify-content: space-between;
   padding: 1.5em;
 
   font-family: 'Edu VIC WA NT Beginner', cursive;
-  background-color: var(--clr2);
+  background-color: var(--clr2bg-light);
 }
 
 .nothing-to-show {
