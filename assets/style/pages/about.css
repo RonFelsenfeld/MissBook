@@ -1,0 +1,8 @@
+.about-container .about-title {
+  font-size: 3em;
+  background-color: var(--clr2bg);
+}
+
+.about-container p {
+  font-size: 2em;
+}

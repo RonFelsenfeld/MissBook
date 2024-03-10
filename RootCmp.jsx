@@ -14,7 +14,9 @@ export function App() {
       <AppHeader setPage={setPage} />
 
       <main className="container">
-        {page === 'home' && <HomePage />}
+        {page === 'home' && (
+          <HomePage onExploreBooks={() => setPage('books')} />
+        )}
         {page === 'about' && <AboutUs />}
         {page === 'books' && <BookIndex />}
       </main>

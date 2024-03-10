@@ -1,3 +1,11 @@
-.home {
-	text-align: center;
+.home-page .main-title {
+  font-size: 5em;
+}
+
+.home-page .welcome-msg {
+  font-size: 3em;
+}
+
+.home-page button:hover {
+  scale: 1.2;
 }

@@ -1,7 +1,8 @@
 import { BookPreview } from './BookPreview.jsx'
 
 export function BookList({ books, onRemoveBook, onSelectBook }) {
-  if (!books || !books.length) return <div>No cars to show</div>
+  if (!books || !books.length)
+    return <div className="nothing-to-show">No books to show</div>
 
   return (
     <ul className="book-list flex clean-list">

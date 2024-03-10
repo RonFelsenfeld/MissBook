@@ -16,3 +16,7 @@
   font-family: 'Edu VIC WA NT Beginner', cursive;
   background-color: var(--clr2);
 }
+
+.nothing-to-show {
+  font-size: 3em;
+}
