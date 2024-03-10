@@ -50,7 +50,7 @@ function save(book) {
   if (book.id) {
     return storageService.put(BOOKS_KEY, book)
   } else {
-    return storageService.post(BOOKS_KEY, book)
+    return storageService.post(BOOKS_KEY, _createBook(book.title, book.price))
   }
 }
 
@@ -58,7 +58,7 @@ function getEmptyBook() {
   return {
     title: '',
     description: '',
-    thumbnail: '',
+    thumbnail: utilService.getRandomImg(),
     listPrice: {
       amount: 0,
       currencyCode: 'EUR',
@@ -456,12 +456,12 @@ function _createBooks() {
   }
 }
 
-function _createBook(title) {
+function _createBook(title, price) {
   const book = getEmptyBook()
   book.title = title
   book.id = utilService.makeId()
   book.description = utilService.makeLorem(20)
   book.thumbnail = utilService.getRandomImg()
-  book.listPrice.amount = utilService.getRandomIntInclusive(1, MAX_PRICE)
+  book.listPrice.amount = price
   return book
 }

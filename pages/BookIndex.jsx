@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 
+import { BookEdit } from '../cmps/BookEdit.jsx'
 import { BookFilter } from '../cmps/BookFilter.jsx'
 import { BookList } from '../cmps/BookList.jsx'
 
@@ -9,6 +10,7 @@ import { BookDetails } from './BookDetails.jsx'
 export function BookIndex() {
   const [books, setBooks] = useState(null)
   const [selectedBook, setSelectedBook] = useState(null)
+  const [isAddingBook, setIsAddingBook] = useState(false)
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
@@ -35,14 +37,26 @@ export function BookIndex() {
     setSelectedBook(book)
   }
 
+  function onAddBook(book) {
+    bookService
+      .save(book)
+      .then(loadBooks)
+      .catch(err => console.log('Had issues with adding book:', err))
+  }
+
   function onSetFilter(fieldsToUpdate) {
     setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...fieldsToUpdate }))
   }
 
   return (
     <section className="books-container">
-      {!selectedBook && (
+      {!selectedBook && !isAddingBook && (
         <React.Fragment>
+          <button
+            onClick={() => setIsAddingBook(prevIsAdding => !prevIsAdding)}
+          >
+            Add book
+          </button>
           <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
           <BookList
             books={books}
@@ -56,6 +70,13 @@ export function BookIndex() {
         <BookDetails
           book={selectedBook}
           onGoBack={() => setSelectedBook(null)}
+        />
+      )}
+
+      {isAddingBook && (
+        <BookEdit
+          onAddBook={onAddBook}
+          onFinish={() => setIsAddingBook(false)}
         />
       )}
     </section>
