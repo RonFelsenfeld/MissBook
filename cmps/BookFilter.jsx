@@ -16,31 +16,35 @@ export function BookFilter({ filterBy, onSetFilter }) {
   }
 
   return (
-    <section className="book-filter">
-      <h2>Filter Books</h2>
+    <section className="book-filter flex align-center">
+      <h2 className="filter-title">Filter Books</h2>
 
-      <form>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          placeholder="By title"
-          value={filterByToEdit.title}
-          onChange={handleFilterChange}
-        />
+      <form className="flex align-center">
+        <div className="input-container flex align-center">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="By title"
+            value={filterByToEdit.title}
+            onChange={handleFilterChange}
+          />
+        </div>
 
-        <label htmlFor="maxPrice">Max Price</label>
-        <input
-          type="number"
-          name="maxPrice"
-          id="maxPrice"
-          placeholder="By max price"
-          max={bookService.MAX_PRICE}
-          min="0"
-          value={filterByToEdit.maxPrice || ''}
-          onChange={handleFilterChange}
-        />
+        <div className="input-container flex align-center">
+          <label htmlFor="maxPrice">Max Price</label>
+          <input
+            type="number"
+            name="maxPrice"
+            id="maxPrice"
+            placeholder="By max price"
+            max={bookService.MAX_PRICE}
+            min="0"
+            value={filterByToEdit.maxPrice || ''}
+            onChange={handleFilterChange}
+          />
+        </div>
       </form>
     </section>
   )

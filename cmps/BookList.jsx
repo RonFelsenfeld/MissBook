@@ -4,7 +4,7 @@ export function BookList({ books, onRemoveBook, onSelectBook }) {
   if (!books || !books.length) return <div>No cars to show</div>
 
   return (
-    <ul className="book-list clean-list">
+    <ul className="book-list flex clean-list">
       {books.map(book => (
         <li key={book.id} className="flex column align-center">
           <BookPreview book={book} />

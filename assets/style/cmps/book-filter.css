@@ -1,0 +1,27 @@
+.book-filter {
+  gap: 2em;
+  padding: 2em;
+  background-color: var(--clr2bg);
+}
+
+.book-filter .filter-title {
+  font-size: 3em;
+}
+
+.book-filter form {
+  gap: 3em;
+}
+
+.book-filter .input-container {
+  gap: 1em;
+}
+
+.book-filter form label {
+  font-size: 2em;
+}
+
+.book-filter form input {
+  font-family: inherit;
+  padding: 0.3em;
+  font-size: 1.5em;
+}
