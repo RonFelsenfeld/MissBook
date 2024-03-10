@@ -81,6 +81,8 @@ function _createBooks() {
     // books.push(_createBook('Harry Potter'))
     // books.push(_createBook('Investments Guide'))
 
+    // ! THE IMAGES URL'S NOT WORKING, SO I'VE GENERATE THEM RANDOMLY
+
     books = [
       {
         id: 'OXeMG8wNskc',

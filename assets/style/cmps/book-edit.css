@@ -1,0 +1,26 @@
+.book-edit {
+  background-color: var(--clr2);
+}
+
+.book-edit h3 {
+  font-size: 3em;
+}
+
+.book-edit form {
+  gap: 1em;
+}
+
+.book-edit .input-container {
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.book-edit form label {
+  font-size: 2em;
+}
+
+.book-edit form input {
+  font-family: inherit;
+  font-size: 1.5em;
+  padding: 0.5em;
+}
