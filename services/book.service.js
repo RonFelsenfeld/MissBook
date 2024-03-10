@@ -76,7 +76,7 @@ function _createBook(title) {
   const book = getEmptyBook()
   book.title = title
   book.id = utilService.makeId()
-  book.description = utilService.makeLorem(100)
+  book.description = utilService.makeLorem(50)
   book.thumbnail = utilService.getRandomImg()
   book.listPrice.amount = utilService.getRandomIntInclusive(1, 120)
   return book
