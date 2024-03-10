@@ -7,7 +7,7 @@ import { BookIndex } from './pages/BookIndex.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 
 export function App() {
-  const [page, setPage] = useState('home')
+  const [page, setPage] = useState('books')
 
   return (
     <section className="app">

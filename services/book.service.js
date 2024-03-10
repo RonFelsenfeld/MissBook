@@ -18,6 +18,10 @@ window.bs = bookService
 
 function query(filterBy = getDefaultFilter()) {
   return storageService.query(BOOKS_KEY).then(books => {
+    if (filterBy.title) {
+      const regex = new RegExp(filterBy.title, 'i')
+      books = books.filter(book => regex.test(book.title))
+    }
     return books
   })
 }
@@ -52,7 +56,7 @@ function getEmptyBook() {
 }
 
 function getDefaultFilter() {
-  return { title: '', price: 50 }
+  return { title: '', maxPrice: 50 }
 }
 
 ////////////////////////////////////////////////////
