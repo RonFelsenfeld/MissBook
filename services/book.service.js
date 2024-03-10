@@ -460,10 +460,16 @@ function _createBooks() {
 
 function _createBook(title, price) {
   const book = getEmptyBook()
-  book.title = title
+
   book.id = utilService.makeId()
-  book.description = utilService.makeLorem(20)
-  book.thumbnail = utilService.getRandomImg()
+  book.title = title
   book.listPrice.amount = price
+
+  book.subtitle = utilService.makeLorem(5)
+  book.authors = ['Barbara Cartland'] // Demo data
+  book.pageCount = 800 // Demo data
+  book.language = 'en' // Demo data
+  book.description = utilService.makeLorem(20)
+  book.categories = ['Action', 'Romantic'] // Demo data
   return book
 }

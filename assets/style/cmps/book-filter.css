@@ -1,7 +1,9 @@
 .book-filter {
   justify-content: space-between;
   gap: 2em;
+
   padding: 2em;
+  margin-block-end: 2em;
   background-color: var(--clr2bg);
 }
 
