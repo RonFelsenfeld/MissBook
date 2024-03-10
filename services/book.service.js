@@ -1,6 +1,7 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
+const MAX_PRICE = 120
 const BOOKS_KEY = 'booksDB'
 _createBooks()
 
@@ -11,6 +12,7 @@ export const bookService = {
   save,
   getEmptyBook,
   getDefaultFilter,
+  MAX_PRICE,
 }
 
 // For debugging
@@ -21,6 +23,10 @@ function query(filterBy = getDefaultFilter()) {
     if (filterBy.title) {
       const regex = new RegExp(filterBy.title, 'i')
       books = books.filter(book => regex.test(book.title))
+    }
+
+    if (filterBy.maxPrice) {
+      books = books.filter(book => book.listPrice.amount <= filterBy.maxPrice)
     }
     return books
   })
@@ -56,7 +62,7 @@ function getEmptyBook() {
 }
 
 function getDefaultFilter() {
-  return { title: '', maxPrice: 50 }
+  return { title: '', maxPrice: MAX_PRICE }
 }
 
 ////////////////////////////////////////////////////
@@ -76,8 +82,8 @@ function _createBook(title) {
   const book = getEmptyBook()
   book.title = title
   book.id = utilService.makeId()
-  book.description = utilService.makeLorem(50)
+  book.description = utilService.makeLorem(20)
   book.thumbnail = utilService.getRandomImg()
-  book.listPrice.amount = utilService.getRandomIntInclusive(1, 120)
+  book.listPrice.amount = utilService.getRandomIntInclusive(1, MAX_PRICE)
   return book
 }

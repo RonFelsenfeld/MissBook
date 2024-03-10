@@ -5,7 +5,7 @@
   padding: 1.5em;
 
   font-family: 'Edu VIC WA NT Beginner', cursive;
-  background-color: lightblue;
+  background-color: var(--clr2);
 }
 
 .book-preview .book-title {
@@ -18,7 +18,7 @@
 }
 
 .book-preview img {
-  width: 30%;
+  width: 40%;
 }
 
 .book-preview .book-price {
