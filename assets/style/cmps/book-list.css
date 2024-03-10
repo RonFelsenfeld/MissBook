@@ -3,3 +3,13 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
   gap: 2em;
 }
+
+.book-list li {
+  min-height: 100%;
+
+  justify-content: space-between;
+  padding: 1.5em;
+
+  font-family: 'Edu VIC WA NT Beginner', cursive;
+  background-color: var(--clr2);
+}
