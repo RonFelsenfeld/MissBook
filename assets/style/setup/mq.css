@@ -12,6 +12,15 @@
   .book-filter {
     flex-direction: column;
   }
+
+  .book-filter form {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+
+  .book-filter form > *:last-child {
+    justify-self: center;
+  }
 }
 
 @media (max-width: 420px) {

@@ -1,4 +1,5 @@
 .book-filter {
+  justify-content: space-between;
   gap: 2em;
   padding: 2em;
   background-color: var(--clr2bg);
@@ -9,7 +10,17 @@
 }
 
 .book-filter form {
-  gap: 3em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.book-filter form > * {
+  justify-content: space-between;
+}
+
+.book-filter form > *:last-child {
+  justify-self: start;
 }
 
 .book-filter .input-container {

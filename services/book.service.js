@@ -26,6 +26,14 @@ function query(filterBy = getDefaultFilter()) {
     if (filterBy.maxPrice) {
       books = books.filter(book => book.listPrice.amount <= filterBy.maxPrice)
     }
+
+    if (filterBy.pagesCount) {
+      books = books.filter(book => book.pageCount >= filterBy.pagesCount)
+    }
+
+    if (filterBy.onSale) {
+      books = books.filter(book => book.listPrice.isOnSale)
+    }
     return books
   })
 }
@@ -60,7 +68,7 @@ function getEmptyBook() {
 }
 
 function getDefaultFilter() {
-  return { title: '', maxPrice: 0 }
+  return { title: '', maxPrice: 0, pagesCount: 0, onSale: false }
 }
 
 ////////////////////////////////////////////////////

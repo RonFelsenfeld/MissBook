@@ -10,6 +10,7 @@ export function BookFilter({ filterBy, onSetFilter }) {
   function handleFilterChange({ target }) {
     let { value, name: field, type } = target
     if (type === 'number') value = +value
+    if (type === 'checkbox') value = target.checked
     setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
   }
 
@@ -17,7 +18,7 @@ export function BookFilter({ filterBy, onSetFilter }) {
     <section className="book-filter flex align-center">
       <h2 className="filter-title">Filter Books</h2>
 
-      <form className="flex align-center">
+      <form>
         <div className="input-container flex align-center">
           <label htmlFor="title">Title</label>
           <input
@@ -39,6 +40,30 @@ export function BookFilter({ filterBy, onSetFilter }) {
             placeholder="By max price"
             min="0"
             value={filterByToEdit.maxPrice || ''}
+            onChange={handleFilterChange}
+          />
+        </div>
+
+        <div className="input-container flex align-center">
+          <label htmlFor="pageCount">Pages</label>
+          <input
+            type="number"
+            name="pagesCount"
+            id="pagesCount"
+            placeholder="By pages"
+            min="0"
+            value={filterByToEdit.pagesCount || ''}
+            onChange={handleFilterChange}
+          />
+        </div>
+
+        <div className="input-container flex align-center">
+          <label htmlFor="pageCount">on Sale</label>
+          <input
+            type="checkbox"
+            name="onSale"
+            id="onSale"
+            checked={filterByToEdit.onSale}
             onChange={handleFilterChange}
           />
         </div>

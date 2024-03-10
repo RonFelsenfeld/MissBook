@@ -13,7 +13,6 @@ export function BookDetails({ book, onGoBack }) {
   function getPublishDesc() {
     const { publishedDate } = book
     const yearsPassed = new Date().getFullYear() - publishedDate
-    console.log(yearsPassed)
 
     if (yearsPassed > 10) return '(Vintage)'
     else if (yearsPassed < 1) return '(New)'
