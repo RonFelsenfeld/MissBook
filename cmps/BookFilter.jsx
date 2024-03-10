@@ -1,7 +1,5 @@
 const { useState, useEffect } = React
 
-import { bookService } from '../services/book.service.js'
-
 export function BookFilter({ filterBy, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
@@ -39,7 +37,6 @@ export function BookFilter({ filterBy, onSetFilter }) {
             name="maxPrice"
             id="maxPrice"
             placeholder="By max price"
-            max={bookService.MAX_PRICE}
             min="0"
             value={filterByToEdit.maxPrice || ''}
             onChange={handleFilterChange}

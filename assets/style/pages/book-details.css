@@ -5,7 +5,17 @@
 }
 
 .book-details .book-title {
+  background-color: var(--clr2);
+  padding: 0.2em;
   font-size: 5em;
+}
+
+.book-details .sub-title {
+  font-size: 3em;
+}
+
+.book-details .book-authors {
+  font-size: 2em;
 }
 
 .book-details img {
@@ -16,9 +26,19 @@
   font-size: 3em;
 }
 
+.book-details .extra-details {
+  font-size: 2em;
+  margin-block-end: 2em;
+  gap: 1em;
+}
+
 .book-details .book-price {
-  font-size: 2.5em;
+  width: fit-content;
+  padding: 0.5em;
   margin-block-end: 1em;
+
+  font-size: 2.5em;
+  background-color: var(--gray1);
 }
 
 .book-details .sale {
@@ -29,4 +49,12 @@
   text-transform: uppercase;
   color: white;
   background-color: red;
+}
+
+.book-details .red {
+  color: red;
+}
+
+.book-details .green {
+  color: green;
 }
