@@ -2,8 +2,11 @@ const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
 const { Link } = ReactRouterDOM
 
-import { AddReview } from '../cmps/AddReview.jsx'
 import { bookService } from '../services/book.service.js'
+
+import { AddReview } from '../cmps/AddReview.jsx'
+
+import { ReviewsList } from '../cmps/ReviewsList.jsx'
 
 export function BookDetails() {
   const [isLoading, setIsLoading] = useState(true)
@@ -27,6 +30,20 @@ export function BookDetails() {
         navigate('/book')
       })
       .finally(() => setIsLoading(false))
+  }
+
+  function onAddReview(review) {
+    bookService
+      .addReview(book.id, review)
+      .then(savedBook => {
+        setBook(savedBook)
+        showErrorMsg(`Review added successfully to ${savedBook.title}`)
+      })
+      .catch(err => {
+        console.log('Had issues with adding review:', err)
+        showErrorMsg('Could not add review')
+      })
+      .finally(() => setIsOnReview(false))
   }
 
   function getReadingDesc() {
@@ -65,6 +82,7 @@ export function BookDetails() {
       {isOnReview && (
         <AddReview
           bookId={params.bookId}
+          addReview={onAddReview}
           onCloseReview={() => setIsOnReview(false)}
         />
       )}
@@ -89,6 +107,8 @@ export function BookDetails() {
             {book.categories.join(' | ')},
           </span>
           <span className="book-language">{book.language}</span>
+
+          {book.reviews && book.reviews.length && <ReviewsList book={book} />}
         </div>
 
         <p className={`book-price ${getPriceClass()}`}>

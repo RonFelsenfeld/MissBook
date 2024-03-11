@@ -1,15 +1,28 @@
 const { useState, useEffect } = React
 
 import { bookService } from '../services/book.service.js'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
-export function AddReview({ bookId, onCloseReview }) {
+export function AddReview({ bookId, addReview, onCloseReview }) {
   const [reviewDetails, setReviewDetails] = useState(
     bookService.getEmptyReview()
   )
 
   function onAddReview(ev) {
     ev.preventDefault()
-    bookService.addReview(bookId, reviewDetails).then(console.log)
+    addReview(reviewDetails)
+
+    // bookService
+    //   .addReview(bookId, reviewDetails)
+    //   .then(savedBook => {
+    //     addReview(savedBook)
+    //     showErrorMsg(`Review added successfully to ${savedBook.title}`)
+    //   })
+    //   .catch(err => {
+    //     console.log('Had issues with adding review:', err)
+    //     showErrorMsg('Could not add review')
+    //   })
+    //   .finally(onCloseReview)
   }
 
   function handleChange({ target }) {

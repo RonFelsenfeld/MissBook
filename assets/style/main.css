@@ -22,6 +22,7 @@
 @import 'cmps/long-txt.css';
 @import 'cmps/user-msg.css';
 @import 'cmps/add-review.css';
+@import 'cmps/review-preview.css';
 
 /* Media Queries */
 @import url('setup/mq.css');
