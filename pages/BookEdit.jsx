@@ -2,12 +2,12 @@ const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouter
 
 import { bookService } from '../services/book.service.js'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 export function BookEdit() {
   const [bookToEdit, setBookToEdit] = useState(bookService.getEmptyBook())
   const navigate = useNavigate()
   const { bookId } = useParams()
-  console.log(bookToEdit)
 
   useEffect(() => {
     if (bookId) loadBook()
@@ -36,15 +36,22 @@ export function BookEdit() {
 
   function onSaveBook(ev) {
     ev.preventDefault()
+    if (!isValidBook()) return showErrorMsg('Must enter all details')
 
     bookService
       .save(bookToEdit)
       .then(savedBook => {
-        navigate('/book')
+        showSuccessMsg(`Book saved successfully ${savedBook.id}`)
       })
       .catch(err => {
         console.log('Had issues with saving book: ', err)
+        showSuccessMsg(`Could not save book`)
       })
+      .finally(() => navigate('/book'))
+  }
+
+  function isValidBook() {
+    return !!bookToEdit.title && !!bookToEdit.listPrice.amount
   }
 
   const { title } = bookToEdit
