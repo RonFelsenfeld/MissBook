@@ -7,8 +7,6 @@
 .book-list li {
   justify-content: space-between;
   padding: 1.5em;
-
-  font-family: 'Edu VIC WA NT Beginner', cursive;
   background-color: var(--clr1bg-light);
 }
 
