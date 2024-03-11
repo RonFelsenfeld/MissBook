@@ -1,4 +1,5 @@
 .book-details {
+  position: relative;
   padding: 2em;
   gap: 2em;
   background-color: var(--clr1bg-light);

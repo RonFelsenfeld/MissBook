@@ -9,6 +9,7 @@ import { BookEdit } from './pages/BookEdit.jsx'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
+import { AddReview } from './cmps/AddReview.jsx'
 
 export function App() {
   return (

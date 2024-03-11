@@ -11,6 +11,8 @@ export const bookService = {
   save,
   getEmptyBook,
   getDefaultFilter,
+  getEmptyReview,
+  addReview,
 }
 
 // For debugging
@@ -72,6 +74,21 @@ function getEmptyBook() {
 
 function getDefaultFilter() {
   return { title: '', maxPrice: 0, pagesCount: 0, onSale: false }
+}
+
+function getEmptyReview() {
+  return { fullName: '', rating: 1, readAt: '' }
+}
+
+function addReview(bookId, review) {
+  return get(bookId)
+    .then(book => {
+      if (book.reviews && book.reviews.length) {
+        book.reviews.push(review)
+      } else book.reviews = [review]
+      return book
+    })
+    .then(save)
 }
 
 ////////////////////////////////////////////////////

@@ -2,11 +2,13 @@ const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
 const { Link } = ReactRouterDOM
 
+import { AddReview } from '../cmps/AddReview.jsx'
 import { bookService } from '../services/book.service.js'
 
 export function BookDetails() {
   const [isLoading, setIsLoading] = useState(true)
   const [book, setBook] = useState(null)
+  const [isOnReview, setIsOnReview] = useState(false)
 
   const params = useParams()
   const navigate = useNavigate()
@@ -60,6 +62,13 @@ export function BookDetails() {
 
   return (
     <section className="book-details flex">
+      {isOnReview && (
+        <AddReview
+          bookId={params.bookId}
+          onCloseReview={() => setIsOnReview(false)}
+        />
+      )}
+
       <div>
         <h2 className="book-title">{book.title}</h2>
         <h3 className="sub-title">{book.subtitle}</h3>
@@ -94,6 +103,12 @@ export function BookDetails() {
         <Link to="/book">
           <button>Go back</button>
         </Link>
+
+        <button
+          onClick={() => setIsOnReview(prevIsOnReview => !prevIsOnReview)}
+        >
+          Add Review
+        </button>
       </div>
 
       <img src={book.thumbnail} alt="Book's Cover" />
