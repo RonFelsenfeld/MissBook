@@ -1,11 +1,6 @@
-export function AppHeader({ setPage }) {
-  function onSetPage(ev, page) {
-    ev.preventDefault()
-    setPage(page)
-  }
-
+export function AppHeader({ onSetPage }) {
   return (
-    <header className="app-header full">
+    <header className="app-header full flex align-center justify-between">
       <h1>Miss Book</h1>
 
       <nav className="app-nav">

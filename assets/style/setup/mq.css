@@ -1,8 +1,4 @@
 @media (max-width: 720px) {
-  .app-header {
-    color: var(--clr2bg);
-  }
-
   .book-details {
     flex-direction: column-reverse;
     align-items: center;

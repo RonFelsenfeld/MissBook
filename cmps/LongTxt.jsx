@@ -10,7 +10,7 @@ export function LongTxt({ txt, length = 100 }) {
   }
 
   function handleSlice() {
-    setSlicedTxt(txt.slice(0, length))
+    setSlicedTxt(txt.substring(0, length))
     setIsSliced(true)
   }
 
@@ -23,9 +23,11 @@ export function LongTxt({ txt, length = 100 }) {
     <section className="long-txt">
       <p>
         {slicedTxt}
-        <span>
-          <button onClick={toggleIsSliced}>...</button>
-        </span>
+        {txt.length > length && (
+          <span>
+            <button onClick={toggleIsSliced}>...</button>
+          </span>
+        )}
       </p>
     </section>
   )

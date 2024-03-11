@@ -9,14 +9,17 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 export function App() {
   const [page, setPage] = useState('books')
 
+  function onSetPage(ev, page) {
+    ev.preventDefault()
+    setPage(page)
+  }
+
   return (
     <section className="app">
-      <AppHeader setPage={setPage} />
+      <AppHeader onSetPage={onSetPage} />
 
       <main className="container">
-        {page === 'home' && (
-          <HomePage onExploreBooks={() => setPage('books')} />
-        )}
+        {page === 'home' && <HomePage onSetPage={onSetPage} />}
         {page === 'about' && <AboutUs />}
         {page === 'books' && <BookIndex />}
       </main>
