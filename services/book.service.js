@@ -13,6 +13,7 @@ export const bookService = {
   getDefaultFilter,
   getEmptyReview,
   addReview,
+  removeReview,
 }
 
 // For debugging
@@ -77,7 +78,7 @@ function getDefaultFilter() {
 }
 
 function getEmptyReview() {
-  return { fullName: '', rating: 1, readAt: '' }
+  return { id: utilService.makeId(), fullName: '', rating: 1, readAt: '' }
 }
 
 function addReview(bookId, review) {
@@ -86,6 +87,16 @@ function addReview(bookId, review) {
       if (book.reviews && book.reviews.length) {
         book.reviews.push(review)
       } else book.reviews = [review]
+      return book
+    })
+    .then(save)
+}
+
+function removeReview(bookId, reviewId) {
+  return get(bookId)
+    .then(book => {
+      const reviewIdx = book.reviews.findIndex(review => review.id === reviewId)
+      book.reviews.splice(reviewIdx, 1)
       return book
     })
     .then(save)

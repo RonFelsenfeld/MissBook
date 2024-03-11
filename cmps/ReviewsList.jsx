@@ -1,6 +1,6 @@
 import { ReviewPreview } from '../cmps/ReviewPreview.jsx'
 
-export function ReviewsList({ book }) {
+export function ReviewsList({ book, onRemoveReview }) {
   return (
     <aside className="reviews-list">
       <h3 className="reviews-title">Reviews</h3>
@@ -8,7 +8,7 @@ export function ReviewsList({ book }) {
         <ul className="clean-list">
           {book.reviews.map((review, idx) => (
             <li key={`${book.id}${idx}`}>
-              <ReviewPreview review={review} />
+              <ReviewPreview review={review} onRemoveReview={onRemoveReview} />
             </li>
           ))}
         </ul>

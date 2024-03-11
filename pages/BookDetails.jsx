@@ -46,6 +46,20 @@ export function BookDetails() {
       .finally(() => setIsOnReview(false))
   }
 
+  function onRemoveReview(reviewId) {
+    bookService
+      .removeReview(book.id, reviewId)
+      .then(savedBook => {
+        setBook(savedBook)
+        showSuccessMsg(`Review removed successfully from ${savedBook.title}`)
+      })
+      .catch(err => {
+        console.log('Had issues with removing review:', err)
+        showErrorMsg('Could not remove review')
+      })
+      .finally(() => setIsOnReview(false))
+  }
+
   function getReadingDesc() {
     const { pageCount } = book
     if (pageCount > 500) return '(Serious Reading)'
@@ -121,7 +135,9 @@ export function BookDetails() {
             {isOnSale && <p className="sale">On sale!</p>}
           </div>
 
-          {book.reviews && book.reviews.length && <ReviewsList book={book} />}
+          {book.reviews && book.reviews.length && (
+            <ReviewsList book={book} onRemoveReview={onRemoveReview} />
+          )}
         </div>
 
         <Link to="/book">
