@@ -10,5 +10,10 @@
 }
 
 .app-header .app-nav {
+  gap: 1em;
   font-size: 2em;
+}
+
+.app-header a.active {
+  color: white;
 }

@@ -13,6 +13,10 @@ export function BookList({ books, onRemoveBook }) {
           <BookPreview book={book} />
 
           <div className="book-actions">
+            <Link to={`/book/edit/${book.id}`}>
+              <button>Update</button>
+            </Link>
+
             <Link to={`/book/${book.id}`}>
               <button>Details</button>
             </Link>

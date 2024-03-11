@@ -12,9 +12,9 @@ export function AppHeader() {
     <header className="app-header full flex align-center justify-between">
       <h1 onClick={onGoHome}>Miss Book</h1>
 
-      <nav className="app-nav">
-        <NavLink to="/">Home | </NavLink>
-        <NavLink to="/about">About | </NavLink>
+      <nav className="app-nav flex">
+        <NavLink to="/">Home </NavLink>
+        <NavLink to="/about">About </NavLink>
         <NavLink to="/book">Books</NavLink>
       </nav>
     </header>

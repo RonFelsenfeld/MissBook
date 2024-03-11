@@ -1,7 +1,5 @@
 const { useState, useEffect } = React
-
-import { BookEdit } from './BookEdit.jsx'
-import { BookDetails } from './BookDetails.jsx'
+const { Link } = ReactRouterDOM
 
 import { BookFilter } from '../cmps/BookFilter.jsx'
 import { BookList } from '../cmps/BookList.jsx'
@@ -10,7 +8,6 @@ import { bookService } from './../services/book.service.js'
 
 export function BookIndex() {
   const [books, setBooks] = useState(null)
-  const [isAddingBook, setIsAddingBook] = useState(false)
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
@@ -33,37 +30,18 @@ export function BookIndex() {
       .catch(err => console.log('Has issues with removing book', err))
   }
 
-  function onAddBook(book) {
-    bookService
-      .save(book)
-      .then(loadBooks)
-      .catch(err => console.log('Had issues with adding book:', err))
-  }
-
   function onSetFilter(fieldsToUpdate) {
     setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...fieldsToUpdate }))
   }
 
   return (
     <section className="books-container">
-      {!isAddingBook && (
-        <React.Fragment>
-          <button
-            onClick={() => setIsAddingBook(prevIsAdding => !prevIsAdding)}
-          >
-            Add book
-          </button>
-          <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-          <BookList books={books} onRemoveBook={onRemoveBook} />
-        </React.Fragment>
-      )}
+      <Link to="/book/edit">
+        <button>Add book</button>
+      </Link>
 
-      {isAddingBook && (
-        <BookEdit
-          onAddBook={onAddBook}
-          onFinish={() => setIsAddingBook(false)}
-        />
-      )}
+      <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+      <BookList books={books} onRemoveBook={onRemoveBook} />
     </section>
   )
 }

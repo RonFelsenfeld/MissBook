@@ -24,3 +24,9 @@
   font-size: 1.5em;
   padding: 0.5em;
 }
+
+.book-edit form button:hover {
+  scale: 1.05;
+  color: black;
+  background-color: var(--clr1bg-light);
+}

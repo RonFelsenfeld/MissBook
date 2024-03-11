@@ -50,7 +50,10 @@ function save(book) {
   if (book.id) {
     return storageService.put(BOOKS_KEY, book)
   } else {
-    return storageService.post(BOOKS_KEY, _createBook(book.title, book.price))
+    return storageService.post(
+      BOOKS_KEY,
+      _createBook(book.title, book.listPrice.amount)
+    )
   }
 }
 
