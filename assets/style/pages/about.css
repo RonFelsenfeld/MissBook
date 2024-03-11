@@ -6,3 +6,18 @@
 .about-container p {
   font-size: 2em;
 }
+
+.about-container nav {
+  gap: 1em;
+}
+
+.about-container a {
+  color: var(--clr1);
+  font-size: 2em;
+  text-transform: uppercase;
+  transition: transform 0.5s;
+}
+
+.about-container a:hover {
+  transform: translateX(0.5em);
+}
