@@ -3,9 +3,9 @@ const { useParams, useNavigate } = ReactRouter
 const { Link } = ReactRouterDOM
 
 import { bookService } from '../services/book.service.js'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { AddReview } from '../cmps/AddReview.jsx'
-
 import { ReviewsList } from '../cmps/ReviewsList.jsx'
 
 export function BookDetails() {
@@ -37,7 +37,7 @@ export function BookDetails() {
       .addReview(book.id, review)
       .then(savedBook => {
         setBook(savedBook)
-        showErrorMsg(`Review added successfully to ${savedBook.title}`)
+        showSuccessMsg(`Review added successfully to ${savedBook.title}`)
       })
       .catch(err => {
         console.log('Had issues with adding review:', err)
@@ -78,7 +78,7 @@ export function BookDetails() {
   const { amount, currencyCode, isOnSale } = book.listPrice
 
   return (
-    <section className="book-details flex">
+    <section className="book-details flex justify-between">
       {isOnReview && (
         <AddReview
           bookId={params.bookId}
@@ -99,26 +99,30 @@ export function BookDetails() {
 
         <p className="book-desc">{book.description}</p>
 
-        <div className="extra-details flex">
-          <span className="book-pages">
-            {book.pageCount} pages {getReadingDesc()} ,
-          </span>
-          <span className="book-categories">
-            {book.categories.join(' | ')},
-          </span>
-          <span className="book-language">{book.language}</span>
+        <div className="book-details-container flex justify-between">
+          <div className="extra-details flex column">
+            <div className="about-book">
+              <span className="book-pages">
+                {book.pageCount} pages {getReadingDesc()} ,
+              </span>
+              <span className="book-categories">
+                {book.categories.join(' | ')},
+              </span>
+              <span className="book-language">{book.language}</span>
+            </div>
+
+            <p className={`book-price ${getPriceClass()}`}>
+              Price:{' '}
+              <span>
+                {amount + ' '}
+                {currencyCode}
+              </span>
+            </p>
+            {isOnSale && <p className="sale">On sale!</p>}
+          </div>
 
           {book.reviews && book.reviews.length && <ReviewsList book={book} />}
         </div>
-
-        <p className={`book-price ${getPriceClass()}`}>
-          Price:{' '}
-          <span>
-            {amount + ' '}
-            {currencyCode}
-          </span>
-        </p>
-        {isOnSale && <p className="sale">On sale!</p>}
 
         <Link to="/book">
           <button>Go back</button>

@@ -1,0 +1,10 @@
+.reviews-list {
+  padding: 0.9em;
+  text-align: center;
+  background-color: var(--gray2);
+}
+
+.reviews-list .reviews-title {
+  margin: 0;
+  font-size: 3em;
+}

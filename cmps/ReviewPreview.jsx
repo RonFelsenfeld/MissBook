@@ -3,8 +3,9 @@ export function ReviewPreview({ review }) {
 
   return (
     <article className="review">
-      <span>{fullName}</span>,<span>{'⭐️'.repeat(rating)}</span>,
-      <span>{readAt}</span>
+      <span className="name">{fullName}</span>,
+      <span className="rating">{'⭐️'.repeat(rating)}</span>,
+      <span className="readAt">{readAt}</span>
     </article>
   )
 }

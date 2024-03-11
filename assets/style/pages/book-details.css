@@ -20,23 +20,28 @@
 }
 
 .book-details img {
-  width: 40%;
+  max-width: 60%;
 }
 
 .book-details .book-desc {
   font-size: 3em;
 }
 
-.book-details .extra-details {
+.book-details .book-details-container {
+  align-items: flex-start;
+}
+
+.book-details .about-book {
+  margin-block-end: 1em;
+}
+
+.book-details .about-book span {
   font-size: 2em;
-  margin-block-end: 2em;
-  gap: 1em;
 }
 
 .book-details .book-price {
   width: fit-content;
   padding: 0.5em;
-  margin-block-end: 1em;
 
   font-size: 2.5em;
   background-color: var(--gray1);

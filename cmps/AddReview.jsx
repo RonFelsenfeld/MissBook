@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 
 import { bookService } from '../services/book.service.js'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function AddReview({ bookId, addReview, onCloseReview }) {
   const [reviewDetails, setReviewDetails] = useState(
@@ -10,19 +10,8 @@ export function AddReview({ bookId, addReview, onCloseReview }) {
 
   function onAddReview(ev) {
     ev.preventDefault()
+    if (!isValidReview()) return showErrorMsg('Must have all details')
     addReview(reviewDetails)
-
-    // bookService
-    //   .addReview(bookId, reviewDetails)
-    //   .then(savedBook => {
-    //     addReview(savedBook)
-    //     showErrorMsg(`Review added successfully to ${savedBook.title}`)
-    //   })
-    //   .catch(err => {
-    //     console.log('Had issues with adding review:', err)
-    //     showErrorMsg('Could not add review')
-    //   })
-    //   .finally(onCloseReview)
   }
 
   function handleChange({ target }) {
@@ -43,6 +32,10 @@ export function AddReview({ bookId, addReview, onCloseReview }) {
       ...prevReviewDetails,
       [field]: value,
     }))
+  }
+
+  function isValidReview() {
+    return !!reviewDetails.fullName && !!reviewDetails.readAt
   }
 
   return (
