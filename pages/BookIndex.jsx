@@ -10,7 +10,6 @@ import { bookService } from './../services/book.service.js'
 
 export function BookIndex() {
   const [books, setBooks] = useState(null)
-  const [selectedBook, setSelectedBook] = useState(null)
   const [isAddingBook, setIsAddingBook] = useState(false)
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
@@ -34,10 +33,6 @@ export function BookIndex() {
       .catch(err => console.log('Has issues with removing book', err))
   }
 
-  function onSelectBook(book) {
-    setSelectedBook(book)
-  }
-
   function onAddBook(book) {
     bookService
       .save(book)
@@ -51,7 +46,7 @@ export function BookIndex() {
 
   return (
     <section className="books-container">
-      {!selectedBook && !isAddingBook && (
+      {!isAddingBook && (
         <React.Fragment>
           <button
             onClick={() => setIsAddingBook(prevIsAdding => !prevIsAdding)}
@@ -59,19 +54,8 @@ export function BookIndex() {
             Add book
           </button>
           <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-          <BookList
-            books={books}
-            onRemoveBook={onRemoveBook}
-            onSelectBook={onSelectBook}
-          />
+          <BookList books={books} onRemoveBook={onRemoveBook} />
         </React.Fragment>
-      )}
-
-      {selectedBook && (
-        <BookDetails
-          book={selectedBook}
-          onGoBack={() => setSelectedBook(null)}
-        />
       )}
 
       {isAddingBook && (

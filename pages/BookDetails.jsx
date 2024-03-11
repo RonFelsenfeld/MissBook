@@ -1,5 +1,31 @@
-export function BookDetails({ book, onGoBack }) {
-  const { amount, currencyCode, isOnSale } = book.listPrice
+const { useState, useEffect } = React
+const { useParams, useNavigate } = ReactRouter
+const { Link } = ReactRouterDOM
+
+import { bookService } from '../services/book.service.js'
+
+export function BookDetails() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [book, setBook] = useState(null)
+
+  const params = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    loadBook()
+  }, [params.bookId])
+
+  function loadBook() {
+    setIsLoading(true)
+    bookService
+      .get(params.bookId)
+      .then(setBook)
+      .catch(err => {
+        console.log('Had issues with loading book:', err)
+        navigate('/book')
+      })
+      .finally(() => setIsLoading(false))
+  }
 
   function getReadingDesc() {
     const { pageCount } = book
@@ -21,11 +47,16 @@ export function BookDetails({ book, onGoBack }) {
   }
 
   function getPriceClass() {
+    const { amount } = book.listPrice
     if (amount > 150) return 'red'
     else if (amount < 20) return 'green'
 
     return ''
   }
+
+  if (isLoading) return <div>Loading...</div>
+
+  const { amount, currencyCode, isOnSale } = book.listPrice
 
   return (
     <section className="book-details flex">
@@ -60,7 +91,9 @@ export function BookDetails({ book, onGoBack }) {
         </p>
         {isOnSale && <p className="sale">On sale!</p>}
 
-        <button onClick={onGoBack}>Go back</button>
+        <Link to="/book">
+          <button>Go back</button>
+        </Link>
       </div>
 
       <img src={book.thumbnail} alt="Book's Cover" />
