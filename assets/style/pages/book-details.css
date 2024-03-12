@@ -63,6 +63,14 @@
   background-color: var(--clr2);
 }
 
+.book-details .nav-btn:hover {
+  background-color: var(--clr1);
+}
+
+.book-details button:not(.nav-btn):hover {
+  background-color: var(--gray2);
+}
+
 .book-details .red {
   color: red;
 }

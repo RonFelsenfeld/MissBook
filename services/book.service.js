@@ -46,6 +46,9 @@ function get(bookId) {
   return storageService
     .get(BOOKS_KEY, bookId)
     .then(book => _setNextPrevBookId(book))
+    .catch(err => {
+      return -1
+    })
 }
 
 function remove(bookId) {
@@ -106,8 +109,15 @@ function removeReview(bookId, reviewId) {
 }
 
 function addGoogleBook(googleBook) {
-  const preparedBook = _getPreparedBook(googleBook)
-  return storageService.post(BOOKS_KEY, preparedBook)
+  return storageService.query(BOOKS_KEY).then(books => {
+    const bookIdx = books.findIndex(currBook => currBook.id === googleBook.id)
+    if (bookIdx >= 0) throw new Error('Book already exists')
+    else {
+      const preparedBook = _getPreparedBook(googleBook)
+      storageService.post(BOOKS_KEY, preparedBook)
+      return preparedBook
+    }
+  })
 }
 
 ////////////////////////////////////////////////////
@@ -137,7 +147,7 @@ function _getPreparedBook(book) {
   newBook.language = language
   newBook.listPrice.amount = utilService.getRandomIntInclusive(0, 150)
 
-  console.log(newBook)
+  // console.log(newBook)
   return newBook
 }
 

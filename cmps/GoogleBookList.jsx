@@ -1,17 +1,21 @@
 import { bookService } from '../services/book.service.js'
-import { showSuccessMsg, showErrorMsg } from './../services/event-bus.service.js'
+import {
+  showSuccessMsg,
+  showErrorMsg,
+} from './../services/event-bus.service.js'
 
 import { GoogleBookPreview } from './GoogleBookPreview.jsx'
 
 export function GoogleBookList({ books }) {
   function onAddBook(book) {
-    bookService.addGoogleBook(book)
+    bookService
+      .addGoogleBook(book)
       .then(addedBook => {
         showSuccessMsg('Book added successfully')
       })
       .catch(err => {
         console.error('Had issues with adding book:', err)
-        showErrorMsg('Could not add book')
+        showErrorMsg('Book Already exists')
       })
   }
 

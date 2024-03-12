@@ -1,8 +1,6 @@
-const { useState, useRef } = React
+const { useState, useEffect, useRef } = React
 
 import { googleBookService } from '../services/googleBook.service.js'
-
-
 
 import { GoogleBookList } from '../cmps/GoogleBookList.jsx'
 import { utilService } from '../services/util.service.js'
@@ -10,9 +8,13 @@ import { utilService } from '../services/util.service.js'
 export function BookAdd() {
   const [searchedBook, setSearchedBook] = useState('')
   const [searchResults, setSearchResults] = useState(null)
-  const loadResultsDebounce = useRef(
-    utilService.debounce(loadResults, 1000)
-  )
+
+  const loadResultsDebounce = useRef(utilService.debounce(loadResults, 1000))
+  const searchInputRef = useRef()
+
+  useEffect(() => {
+    searchInputRef.current.focus()
+  }, [])
 
   function loadResults(val) {
     googleBookService
@@ -39,6 +41,7 @@ export function BookAdd() {
 
       <form>
         <input
+          ref={searchInputRef}
           className="search-input"
           placeholder="Search for books"
           type="search"

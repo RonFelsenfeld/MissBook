@@ -4,14 +4,21 @@ import { bookService } from '../services/book.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function AddReview({ bookId, addReview, onCloseReview }) {
+  const [ratingCmpType, setCmpType] = useState('select')
   const [reviewDetails, setReviewDetails] = useState(
     bookService.getEmptyReview()
   )
+
+  console.log(ratingCmpType)
 
   function onAddReview(ev) {
     ev.preventDefault()
     if (!isValidReview()) return showErrorMsg('Must have all details')
     addReview(reviewDetails)
+  }
+
+  function onSelected({ target }) {
+    setCmpType(target.id)
   }
 
   function handleChange({ target }) {
@@ -56,6 +63,33 @@ export function AddReview({ bookId, addReview, onCloseReview }) {
             onChange={handleChange}
             value={reviewDetails.fullName}
           />
+        </div>
+
+        <div className="flex justify-between">
+          <div className="input-container flex column align-center">
+            <input
+              type="radio"
+              id="select"
+              name="rating"
+              onChange={onSelected}
+            />
+            <label htmlFor="select">Select</label>
+          </div>
+
+          <div className="input-container flex column align-center">
+            <input type="radio" id="text" name="rating" onChange={onSelected} />
+            <label htmlFor="text">Text</label>
+          </div>
+
+          <div className="input-container flex column align-center">
+            <input
+              type="radio"
+              id="stars"
+              name="rating"
+              onChange={onSelected}
+            />
+            <label htmlFor="stars">Stars</label>
+          </div>
         </div>
 
         <div className="input-container flex align-center">
