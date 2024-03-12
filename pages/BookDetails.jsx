@@ -87,7 +87,7 @@ export function BookDetails() {
     return ''
   }
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <div className="loading-msg">Loading details...</div>
 
   const { amount, currencyCode, isOnSale } = book.listPrice
 
@@ -149,6 +149,16 @@ export function BookDetails() {
         >
           Add Review
         </button>
+
+        <div className="next-prev-container">
+          <Link to={`/book/${book.prevBookId}`}>
+            <button className="nav-btn">Previous</button>
+          </Link>
+
+          <Link to={`/book/${book.nextBookId}`}>
+            <button className="nav-btn">Next</button>
+          </Link>
+        </div>
       </div>
 
       <img src={book.thumbnail} alt="Book's Cover" />

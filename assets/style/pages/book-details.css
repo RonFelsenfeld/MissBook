@@ -57,10 +57,18 @@
   background-color: red;
 }
 
+.book-details .nav-btn {
+  background-color: var(--clr2);
+}
+
 .book-details .red {
   color: red;
 }
 
 .book-details .green {
   color: green;
+}
+
+.loading-msg {
+  font-size: 2em;
 }
