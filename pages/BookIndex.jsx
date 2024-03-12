@@ -41,9 +41,14 @@ export function BookIndex() {
 
   return (
     <section className="books-container">
-      <Link to="/book/edit">
-        <button>Add book</button>
-      </Link>
+      <nav>
+        <Link to="/book/edit">
+          <button>Create book</button>
+        </Link>
+        <Link to="/book/add">
+          <button>Add from google</button>
+        </Link>
+      </nav>
 
       <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
       <BookList books={books} onRemoveBook={onRemoveBook} />
