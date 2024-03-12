@@ -1,7 +1,9 @@
 .book-details {
   position: relative;
+  align-items: center;
+  gap: 5em;
+
   padding: 2em;
-  gap: 2em;
   background-color: var(--clr1bg-light);
 }
 
@@ -20,7 +22,7 @@
 }
 
 .book-details img {
-  max-width: 60%;
+  flex-grow: 1;
 }
 
 .book-details .book-desc {

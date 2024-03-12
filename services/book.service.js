@@ -14,6 +14,7 @@ export const bookService = {
   getEmptyReview,
   addReview,
   removeReview,
+  addGoogleBook,
 }
 
 // For debugging
@@ -104,7 +105,41 @@ function removeReview(bookId, reviewId) {
     .then(save)
 }
 
+function addGoogleBook(googleBook) {
+  const preparedBook = _getPreparedBook(googleBook)
+  return storageService.post(BOOKS_KEY, preparedBook)
+}
+
 ////////////////////////////////////////////////////
+
+function _getPreparedBook(book) {
+  const { id, volumeInfo } = book
+  const {
+    title,
+    authors,
+    publishedDate,
+    description,
+    pageCount,
+    categories,
+    imageLinks,
+    language,
+  } = volumeInfo
+
+  const newBook = getEmptyBook()
+  newBook.id = id
+  newBook.title = title
+  newBook.authors = authors
+  newBook.publishedDate = publishedDate.slice(0, 4) // ! FIX
+  newBook.description = description
+  newBook.pageCount = pageCount
+  newBook.categories = categories
+  newBook.thumbnail = imageLinks.thumbnail
+  newBook.language = language
+  newBook.listPrice.amount = utilService.getRandomIntInclusive(0, 150)
+
+  console.log(newBook)
+  return newBook
+}
 
 function _setNextPrevBookId(book) {
   return storageService.query(BOOKS_KEY).then(books => {

@@ -5,6 +5,7 @@ export const utilService = {
   loadFromStorage,
   saveToStorage,
   getRandomImg,
+  debounce,
 }
 
 function makeId(length = 6) {
@@ -104,4 +105,18 @@ function getRandomImg() {
   const rndIdx = getRandomIntInclusive(0, imgURLs.length - 1)
 
   return imgURLs[rndIdx]
+}
+
+function debounce(func, wait) {
+  let timeout
+
+  return function executedFunction(...args) {
+    const later = () => {
+      timeout = null
+      func(...args)
+    }
+
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
 }

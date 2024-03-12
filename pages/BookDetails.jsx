@@ -92,7 +92,7 @@ export function BookDetails() {
   const { amount, currencyCode, isOnSale } = book.listPrice
 
   return (
-    <section className="book-details flex justify-between">
+    <section className="book-details flex column">
       {isOnReview && (
         <AddReview
           bookId={params.bookId}
@@ -100,6 +100,8 @@ export function BookDetails() {
           onCloseReview={() => setIsOnReview(false)}
         />
       )}
+
+      <img src={book.thumbnail} alt="Book's Cover" />
 
       <div>
         <h2 className="book-title">{book.title}</h2>
@@ -160,8 +162,6 @@ export function BookDetails() {
           </Link>
         </div>
       </div>
-
-      <img src={book.thumbnail} alt="Book's Cover" />
     </section>
   )
 }

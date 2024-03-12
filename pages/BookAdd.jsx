@@ -1,20 +1,54 @@
-import { utilService } from '../services/util.service.js' // ! Remove after demo
+const { useState, useRef } = React
+
+import { googleBookService } from '../services/googleBook.service.js'
+
+
 
 import { GoogleBookList } from '../cmps/GoogleBookList.jsx'
+import { utilService } from '../services/util.service.js'
 
 export function BookAdd() {
-  const book1 = { title: 'title1', id: utilService.makeId() }
-  const book2 = { title: 'title2', id: utilService.makeId() }
-  const book3 = { title: 'title3', id: utilService.makeId() }
-  const book4 = { title: 'title4', id: utilService.makeId() }
-  const book5 = { title: 'title5', id: utilService.makeId() }
+  const [searchedBook, setSearchedBook] = useState('')
+  const [searchResults, setSearchResults] = useState(null)
+  const loadResultsDebounce = useRef(
+    utilService.debounce(loadResults, 1000)
+  )
 
-  const demoData = [book1, book2, book3, book4, book5]
+  function loadResults(val) {
+    googleBookService
+      .query(val)
+      .then(results => {
+        setSearchResults(results)
+      })
+      .catch(err => {
+        console.error('Had issues with loading results:', err)
+      })
+  }
+
+  function handleChange({ target }) {
+    const { value } = target
+    if (!value) setSearchResults([])
+
+    setSearchedBook(value)
+    loadResultsDebounce.current(value)
+  }
 
   return (
     <section className="google-book-section flex column align-center">
       <h3>Search book on google</h3>
-      <GoogleBookList books={demoData} />
+
+      <form>
+        <input
+          className="search-input"
+          placeholder="Search for books"
+          type="search"
+          name="search"
+          onChange={handleChange}
+          value={searchedBook}
+        />
+      </form>
+
+      {searchResults && <GoogleBookList books={searchResults} />}
     </section>
   )
 }
