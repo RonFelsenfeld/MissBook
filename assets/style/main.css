@@ -12,6 +12,7 @@
 @import 'pages/home.css';
 @import 'pages/about.css';
 @import 'pages/book-details.css';
+@import 'pages/google-book.css';
 
 /* Components */
 @import 'cmps/app-header.css';
@@ -26,6 +27,8 @@
 @import 'cmps/review-preview.css';
 @import 'cmps/about-team.css';
 @import 'cmps/about-goal.css';
+@import 'cmps/google-book-list.css';
+@import 'cmps/google-book-preview.css';
 
 /* Media Queries */
 @import url('setup/mq.css');

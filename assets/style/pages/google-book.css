@@ -1,0 +1,8 @@
+.google-book-section {
+  background-color: var(--clr2);
+  padding-block: 1.5em;
+}
+
+.google-book-section h3 {
+  font-size: 3em;
+}

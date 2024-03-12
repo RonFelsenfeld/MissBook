@@ -12,7 +12,7 @@ export function BookAdd() {
   const demoData = [book1, book2, book3, book4, book5]
 
   return (
-    <section>
+    <section className="google-book-section flex column align-center">
       <h3>Search book on google</h3>
       <GoogleBookList books={demoData} />
     </section>

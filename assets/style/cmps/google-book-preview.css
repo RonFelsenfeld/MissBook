@@ -1,0 +1,12 @@
+.google-book-preview .book-title {
+  font-size: 1.5em;
+  flex-grow: 1;
+}
+
+.google-book-preview .btn-add {
+  background-color: var(--clr1bg-light);
+}
+
+.google-book-preview .btn-add:hover {
+  scale: 1.2;
+}
